@@ -1,0 +1,53 @@
+<div class="usuario-container">
+    <h2 class="title">Gestión de Usuarios</h2>
+    <br>
+    <button mat-raised-button color="accent" style="margin-left: 50px"
+        (click)="openUsuarioForm()"
+        >Agregar Usuario</button>
+
+    
+    <br><br><!-- Campo de búsqueda -->
+    <mat-form-field appearance="outline" class="search-bar" style="margin-left: 50px">
+    <mat-label>Buscar usuario</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+    <input matInput (input)="filtrarUsuarios($event)" placeholder="Ingresa el Mail o Rol">
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+    <h3 style="font-weight: bold;">Lista de Usuarios</h3>
+
+    <table mat-table [dataSource]="usuariosFiltrados" class="mat-elevation-z8">
+        <!-- Columna Email -->
+        <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.Email }} </td>
+        </ng-container>
+
+        <!-- Columna Rol -->
+        <ng-container matColumnDef="Role">
+        <th mat-header-cell *matHeaderCellDef> Rol </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.Role | uppercase }} </td>
+        </ng-container>
+
+        <!-- Columna Acciones -->
+        <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let usuario">
+            <button mat-button color="primary" (click)="openEditUsuarioForm(usuario)">Editar</button>
+            <button mat-button color="warn" (click)="deleteUsuario(usuario.Id)">Eliminar</button>
+        </td>
+        </ng-container>
+
+        <!-- Columna Contraseña -->
+        <ng-container matColumnDef="Password">
+            <th mat-header-cell *matHeaderCellDef> Contraseña </th>
+            <td mat-cell *matCellDef="let usuario"> **** </td>
+        </ng-container>
+        
+        <!-- Encabezados -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <!-- Filas -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

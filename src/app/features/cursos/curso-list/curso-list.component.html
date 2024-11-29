@@ -1,0 +1,86 @@
+<h2 class="title">Lista de Cursos</h2>
+
+<button mat-raised-button color="accent" class="compact-button" style="margin-left: 50px"
+  (click)="openCursoForm()"
+  *ngIf="userRole === 'admin'"
+  >Agregar Curso</button>
+
+<br><br><!-- Campo de búsqueda -->
+<mat-form-field appearance="outline" class="search-bar" style="margin-left: 50px">
+  <mat-label>Buscar Cursos</mat-label>
+  <mat-icon matSuffix>search</mat-icon>
+  <input matInput (input)="filtrarCursos($event)" placeholder="Ingresa el nombre o descripción">
+</mat-form-field>
+
+<div class="course-container">
+  <mat-card *ngFor="let curso of cursosFiltrados" class="curso-item">
+    <mat-card-header>
+      <mat-card-title>{{ curso.Nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ curso.Descripcion }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <h3>Alumnos Asignados</h3>
+      <ul>
+        <li *ngFor="let alumno of curso.alumnos">
+          {{ alumno.Nombre | uppercase }} {{ alumno.Apellido | uppercase }}
+          <button mat-icon-button color="warn" 
+          (click)="desasignarAlumno(curso.Id, alumno.Id)"
+          *ngIf="userRole === 'admin'"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+      <div class="separator"></div>
+      <h3>Profesores Asignados</h3>
+      <ul>
+        <li *ngFor="let profesor of curso.profesores">
+          {{ profesor.Nombre | uppercase }} {{ profesor.Apellido | uppercase }}
+          <button mat-icon-button color="warn" class="compact-button" 
+            (click)="desasignarProfesor(curso.Id, profesor.Id)"
+            *ngIf="userRole === 'admin'"
+            >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+
+      <div class="separator"></div>
+      <!-- Seleccionar Alumno para Asignar -->
+      <mat-select placeholder="Asignar Alumno" class="custom-select" 
+        (selectionChange)="asignarAlumno(curso.Id, $event.value)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno.Id">
+          {{ alumno.Nombre }} {{ alumno.Apellido }}
+        </mat-option>
+      </mat-select>
+
+      <!-- Seleccionar Profesor para Asignar -->
+      <mat-select placeholder="Asignar Profesor" class="custom-select" 
+        (selectionChange)="asignarProfesor(curso.Id, $event.value)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-option *ngFor="let profesor of profesores" [value]="profesor.Id">
+          {{ profesor.Nombre }} {{ profesor.Apellido }}
+        </mat-option>
+      </mat-select>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-mini-fab color="primary" class="compact-button" 
+        (click)="openEditCursoForm(curso)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" class="compact-button" 
+        (click)="deleteCurso(curso.Id)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

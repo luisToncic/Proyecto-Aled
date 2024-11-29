@@ -1,0 +1,67 @@
+<h2 class="title">Alumnos Inscritos</h2>
+
+<button
+  mat-raised-button
+  color="accent"
+  style="margin-left: 50px"
+  (click)="openAlumnoForm()"
+  *ngIf="userRole === 'admin'"
+>
+  Agregar Alumno
+</button>
+
+<br /><br />
+<!-- Campo de búsqueda -->
+<mat-form-field appearance="outline" class="search-bar" style="margin-left: 50px">
+  <mat-label>Buscar alumno</mat-label>
+  <mat-icon matSuffix>search</mat-icon>
+  <input matInput (input)="filtrarAlumnos($event)" placeholder="Ingresa el nombre o apellido" />
+</mat-form-field>
+
+<div class="course-container">
+  <mat-card *ngFor="let alumno of alumnosFiltrados" class="curso-item">
+    <mat-card-header>
+      <mat-card-title>{{ alumno.Nombre }} {{ alumno.Apellido }}</mat-card-title>
+      <mat-card-subtitle>{{ alumno.Email }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>Edad: {{ alumno.Edad }}</p>
+
+      <!-- Mostrar cursos asignados -->
+      <h3>Cursos Asignados</h3>
+      <ul>
+        <li *ngFor="let curso of alumno.cursos">
+          {{ curso.Nombre | uppercase }}
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="desasignarCurso(alumno.Id, curso.Id)"
+            *ngIf="userRole === 'admin'"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-mini-fab
+        color="primary"
+        (click)="openEditAlumnoForm(alumno)"
+        *ngIf="userRole === 'admin'"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-mini-fab
+        color="warn"
+        (click)="deleteAlumno(alumno.Id)"
+        *ngIf="userRole === 'admin'"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

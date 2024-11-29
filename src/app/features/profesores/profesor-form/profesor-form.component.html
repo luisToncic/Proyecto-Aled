@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Profesor' : 'Agregar Profesor' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="profesorForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre del Profesor</mat-label>
+      <input matInput formControlName="Nombre" placeholder="Ingresa el nombre del profesor">
+      <mat-error *ngIf="profesorForm.get('Nombre')?.hasError('required') && profesorForm.get('Nombre')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="profesorForm.get('Nombre')?.hasError('pattern') && profesorForm.get('Nombre')?.touched">
+        Solo se permiten letras a-z A-Z.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido del Profesor</mat-label>
+      <input matInput formControlName="Apellido" placeholder="Ingresa el apellido del profesor">
+      <mat-error *ngIf="profesorForm.get('Apellido')?.hasError('required') && profesorForm.get('Apellido')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="profesorForm.get('Apellido')?.hasError('pattern') && profesorForm.get('Apellido')?.touched">
+        Solo se permiten letras a-z A-Z.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="Email" placeholder="Ingresa el email">
+      <mat-error *ngIf="profesorForm.get('Email')?.hasError('required') && profesorForm.get('Email')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="profesorForm.get('Email')?.hasError('email') && profesorForm.get('Email')?.touched">
+        Debe ser un email válido.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="onSave()" [disabled]="profesorForm.invalid">
+    {{ isEditMode ? 'Guardar Cambios' : 'Agregar' }}
+  </button>
+</mat-dialog-actions>

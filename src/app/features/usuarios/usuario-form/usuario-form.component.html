@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="usuarioForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="Email" type="email" placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="Password" type="text" placeholder="Contraseña">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="Role">
+                <mat-option value="admin">Admin</mat-option>
+                <mat-option value="profesor">Profesor</mat-option>
+                <mat-option value="estudiante">Estudiante</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form> 
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="saveUsuario()" [disabled]="usuarioForm.invalid">
+        {{ isEditMode ? 'Guardar Cambios' : 'Agregar Usuario' }}
+    </button>
+</mat-dialog-actions>

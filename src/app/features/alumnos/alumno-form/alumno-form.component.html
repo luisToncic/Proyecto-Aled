@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="alumnoForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre del Alumno</mat-label>
+      <input matInput formControlName="Nombre" placeholder="Ingresa el nombre del alumno">
+      <mat-error *ngIf="alumnoForm.get('Nombre')?.hasError('required') && alumnoForm.get('Nombre')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="alumnoForm.get('Nombre')?.hasError('pattern') && alumnoForm.get('Nombre')?.touched">
+        Solo se permiten letras (a-z, A-Z) y espacios.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido del Alumno</mat-label>
+      <input matInput formControlName="Apellido" placeholder="Ingresa el apellido del alumno">
+      <mat-error *ngIf="alumnoForm.get('Apellido')?.hasError('required') && alumnoForm.get('Apellido')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="alumnoForm.get('Apellido')?.hasError('pattern') && alumnoForm.get('Apellido')?.touched">
+        Solo se permiten letras (a-z, A-Z) y espacios.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input type="number" matInput formControlName="Edad" placeholder="Ingresa la edad del alumno" min="19" max="99">
+      <mat-error *ngIf="alumnoForm.get('Edad')?.hasError('required') && alumnoForm.get('Edad')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="alumnoForm.get('Edad')?.hasError('min') && alumnoForm.get('Edad')?.touched">
+        La edad debe ser mayor o igual a 19.
+      </mat-error>
+      <mat-error *ngIf="alumnoForm.get('Edad')?.hasError('max') && alumnoForm.get('Edad')?.touched">
+        La edad debe ser menor o igual a 111.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="Email" placeholder="Ingresa el email del alumno">
+      <mat-error *ngIf="alumnoForm.get('Email')?.hasError('required') && alumnoForm.get('Email')?.touched">
+        Este campo es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="alumnoForm.get('Email')?.hasError('email') && alumnoForm.get('Email')?.touched">
+        Debe ser un email válido.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="onSave()" [disabled]="alumnoForm.invalid">
+    {{ isEditMode ? 'Guardar Cambios' : 'Agregar' }}
+  </button>
+</mat-dialog-actions>

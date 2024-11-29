@@ -1,0 +1,52 @@
+<h2 class="title">Lista de Profesores</h2>
+
+<button mat-raised-button color="accent" class="compact-button" style="margin-left: 50px"
+  (click)="openProfesorForm()"
+  *ngIf="userRole === 'admin'"
+  >Agregar Profesor</button>
+
+  <br><br><!-- Campo de búsqueda -->
+<mat-form-field appearance="outline" class="search-bar" style="margin-left: 50px">
+  <mat-label>Buscar profesor</mat-label>
+  <mat-icon matSuffix>search</mat-icon>
+  <input matInput (input)="filtrarProfesores($event)" placeholder="Ingresa el nombre o apellido">
+</mat-form-field>
+
+<div class="course-container">
+  <mat-card *ngFor="let profesor of profesoresFiltrados" class="profesor-item">
+    <mat-card-header>
+      <mat-card-title>{{ profesor.Nombre }} {{ profesor.Apellido }}</mat-card-title>
+      <mat-card-subtitle>{{ profesor.Email }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <h3>Cursos Asignados</h3>
+      <ul>
+        <li *ngFor="let curso of profesor.cursos">
+          {{ curso.Nombre | uppercase }}
+          <button mat-icon-button color="warn" 
+            (click)="desasignarCursoProfesor(profesor.Id, curso.Id)"
+            *ngIf="userRole === 'admin'"
+            >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-mini-fab color="primary"
+        (click)="openEditProfesorForm(profesor)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" 
+        (click)="deleteProfesor(profesor.Id)"
+        *ngIf="userRole === 'admin'"
+        >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

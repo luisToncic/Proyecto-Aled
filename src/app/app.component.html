@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <a
+    routerLink="/dashboard"
+    class="title"
+    style="text-decoration: none; color: inherit;"
+    >{{ title }}</a
+  >
+  <span class="spacer"></span>
+  
+<!-- Botones dinámicos basados en roles -->
+<ng-container *ngIf="userRole === 'estudiante'; else showProfesorOrAdmin">
+  <button mat-button routerLink="/cursos" routerLinkActive="active">Cursos</button>
+</ng-container>
+
+<ng-template #showProfesorOrAdmin>
+  <ng-container *ngIf="userRole === 'profesor'; else showAdmin">
+    <button mat-button routerLink="/alumnos" routerLinkActive="active">Alumnos</button>
+    <button mat-button routerLink="/cursos" routerLinkActive="active">Cursos</button>
+    <button mat-button routerLink="/profesores" routerLinkActive="active">Profesores</button>
+  </ng-container>
+
+  <ng-template #showAdmin>
+    <ng-container *ngIf="userRole === 'admin'">
+      <button mat-button routerLink="/usuarios" routerLinkActive="active">Usuarios</button>
+      <button mat-button routerLink="/alumnos" routerLinkActive="active">Alumnos</button>
+      <button mat-button routerLink="/cursos" routerLinkActive="active">Cursos</button>
+      <button mat-button routerLink="/profesores" routerLinkActive="active">Profesores</button>
+    </ng-container>
+  </ng-template>
+</ng-template>
+
+  <!-- Icono de usuario y menú de cerrar sesión -->
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon> <!-- Icono de usuario -->
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

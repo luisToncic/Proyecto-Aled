@@ -1,0 +1,68 @@
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.usuario-container {
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .mat-header-row {
+    background-color: #f5f5f5;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  
+
+  
+.search-bar {
+  width: 100%; /* Hace que el campo ocupe todo el ancho disponible */
+  max-width: 350px; /* Tamaño máximo para el campo de búsqueda */
+  margin: 20px 0; /* Espaciado superior e inferior */
+  position: relative;
+}
+
+.search-bar mat-label {
+  font-weight: bold; /* Para que el label se vea más destacado */
+  color: #555; /* Color del label */
+  margin-left: 6px; 
+}
+
+.search-bar input {
+  font-size: 16px; /* Tamaño de la fuente más grande para mayor legibilidad */
+  padding-left: 10px; /* Deja espacio para el ícono de búsqueda */
+}
+
+.search-bar .mat-form-field {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: box-shadow 0.3s ease-in-out; /* Transición de sombra suave */
+}
+
+.search-bar .mat-form-field.mat-focused {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más prominente cuando está en foco */
+}
+
+.search-bar mat-icon {
+  color: #888; /* Color gris para el ícono */
+  font-size: 20px; /* Tamaño del ícono */
+}
+
+/* Cuando el campo esté enfocado, cambiamos el color de borde */
+.search-bar .mat-form-field-underline {
+  border-color: #3f51b5; /* Color del borde cuando está enfocado */
+}
+
+.search-bar input:focus {
+  outline: none; /* Elimina el borde por defecto al hacer foco */
+}

@@ -1,0 +1,146 @@
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.course-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.mat-card {
+  background-color: #444;
+  color: #fff;
+  border: 2px solid #666;
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+.mat-card:hover {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);  /* Más sombra al hacer hover */
+}
+
+.curso-item {
+  margin: 15px 0;
+  padding: 15px;
+}
+
+.mat-card-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.mat-card-header {
+  background-color: #000;
+  color: white;
+}
+
+.mat-card-title {
+  font-size: 1.2rem;
+  color: #b39ddb;
+}
+
+.mat-card-subtitle {
+  font-size: 1rem;
+  color: #80cbc4;
+}
+
+
+
+
+h3{
+  padding-top: 17px;
+  color:chocolate; 
+}
+
+li {
+  font-size: 1rem; 
+  font-weight: bold; 
+}
+
+mat-card-actions {
+  padding-top: 17px;
+  display: flex; 
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+  gap: 8px; 
+}
+
+.custom-select {
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  margin-bottom: 16px;
+}
+
+.custom-select .mat-select {
+  padding: 10px; 
+}
+
+.custom-select:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.custom-select .mat-select:hover {
+  border-color: #007bff; 
+}
+
+.custom-select .mat-select.mat-select-focused {
+  border-color: #007bff; 
+}
+.custom-select .mat-option {
+  padding: 10px; 
+}
+
+.custom-select .mat-option:hover {
+  background-color: rgb(224, 224, 224); 
+}
+
+
+.search-bar {
+  width: 100%; /* Hace que el campo ocupe todo el ancho disponible */
+  max-width: 350px; /* Tamaño máximo para el campo de búsqueda */
+  margin: 20px 0; /* Espaciado superior e inferior */
+  position: relative;
+}
+
+.search-bar mat-label {
+  font-weight: bold; /* Para que el label se vea más destacado */
+  color: #555; /* Color del label */
+  margin-left: 6px; 
+}
+
+.search-bar input {
+  font-size: 16px; /* Tamaño de la fuente más grande para mayor legibilidad */
+  padding-left: 10px; /* Deja espacio para el ícono de búsqueda */
+}
+
+.search-bar .mat-form-field {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: box-shadow 0.3s ease-in-out; /* Transición de sombra suave */
+}
+
+.search-bar .mat-form-field.mat-focused {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más prominente cuando está en foco */
+}
+
+.search-bar mat-icon {
+  color: #888; /* Color gris para el ícono */
+  font-size: 20px; /* Tamaño del ícono */
+}
+
+/* Cuando el campo esté enfocado, cambiamos el color de borde */
+.search-bar .mat-form-field-underline {
+  border-color: #3f51b5; /* Color del borde cuando está enfocado */
+}
+
+.search-bar input:focus {
+  outline: none; /* Elimina el borde por defecto al hacer foco */
+}
